@@ -5,4 +5,7 @@ const emailController = new EmailController();
 
 export default (server) => {
     server.post(`/api/contact`, emailController.sendEmail);
+    server.get('/', (req, res) => {
+        res.send("HELLO WORLD")
+    })
 }
