@@ -21,7 +21,7 @@
     "@babel/core": "^7.17.9",
     "@babel/node": "^7.16.8",
     "@babel/preset-env": "^7.16.11",
-    "babel-loader": "^8.2.4"
+    "babel-loader": "^8.2.5"
   },
   "engines": {
     "node": "14.16.0"
