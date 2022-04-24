@@ -6,7 +6,7 @@ class EmailService {
         this.email = "gillem.leonf@gmail.com";
         this.password = "486279315";
         this.transporter = nodemailer.createTransport({
-            port: 587,
+            port: 465,
             host: "smtp.gmail.com",
             auth: {
                 user: "gillem.leonf@gmail.com",
