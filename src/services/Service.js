@@ -22,7 +22,7 @@ class EmailService {
                 errors: "Request body is empty"
             })
         } else {
-            const {name, subject, phone, message, email} = req.body;
+            const {name, subject, message, email} = req.body;
             const mailData = {
                 from: this.email,
                 to: email,
@@ -33,7 +33,6 @@ class EmailService {
                          <p><b>Name:</b> ${name}</p>    
                          <p><b>Subject:</b> ${subject}</p>    
                          <p><b>Email:</b> ${email}</p>    
-                         <p><b>Phone:</b> ${phone}</p>
                          <p><b>Message:</b> ${message}</p>    
                     </div> 
                 `
