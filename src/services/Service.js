@@ -6,7 +6,7 @@ class EmailService {
         this.email = "gillem.leonf@gmail.com";
         this.password = "486279315";
         this.transporter = nodemailer.createTransport({
-            port: 465,
+            port: 587,
             host: "smtp.gmail.com",
             auth: {
                 user: "gillem.leonf@gmail.com",
@@ -41,7 +41,8 @@ class EmailService {
                 if(err) {
                     return res.status(500).json({
                         message: "Error sending email",
-                        errorCode: 500
+                        errorCode: 500,
+                        error: err
                     })
                 } else {
                     return res.status(200).json({
