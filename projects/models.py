@@ -14,14 +14,17 @@ class Project(models.Model):
     description = models.TextField()
     start_date  = models.DateField(null=True, blank=True)
     end_date    = models.DateField(null=True, blank=True)
-    url         = models.URLField(null=True, blank=True)
+    url         = models.JSONField(default=list, blank=True)
     image       = CloudinaryField('image', null=True, blank=True)
+    image_card  = CloudinaryField('image_card', null=True, blank=True)
 
     objects = ProjectQuerySet.as_manager()
 
     def delete(self, *args, **kwargs):
         if self.image and getattr(self.image, 'public_id', None):
             destroy(self.image.public_id)
+        if self.image_card and getattr(self.image_card, 'public_id', None):
+            destroy(self.image_card.public_id)
         super().delete(*args, **kwargs)
 
     def __str__(self):

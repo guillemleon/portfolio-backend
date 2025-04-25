@@ -18,13 +18,6 @@ import cloudinary.uploader
 import cloudinary.api
 from decouple import config
 
-""" from decouple import Config, RepositoryEnv """
-
-# DEV
-""" ENV_PATH = os.path.join(os.path.dirname(__file__), '../.env')
-repo = RepositoryEnv(ENV_PATH)
-config = Config(repo) """
-
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -177,3 +170,10 @@ cloudinary.config(
 )
 
 DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
+
+CORS_ALLOWED_ORIGINS = [
+    "http://localhost:8080",
+    "http://127.0.0.1:8080",
+    "https://guillemleon.com",
+    "https://www.guillemleon.com"
+]
