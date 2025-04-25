@@ -17,7 +17,7 @@ import cloudinary.uploader
 import cloudinary.api
 from decouple import Config, RepositoryEnv
 
-ENV_PATH = os.path.join(os.path.dirname(__file__), '.env')
+ENV_PATH = os.path.join(os.path.dirname(__file__), '../.env')
 repo = RepositoryEnv(ENV_PATH)
 
 config = Config(repo)
