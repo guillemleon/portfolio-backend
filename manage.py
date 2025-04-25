@@ -1,4 +1,6 @@
 #!/usr/bin/env python
+from decouple import AutoConfig
+AutoConfig(search_path='.')
 """Django's command-line utility for administrative tasks."""
 import os
 import sys

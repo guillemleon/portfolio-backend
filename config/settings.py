@@ -12,15 +12,18 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 
 from pathlib import Path
 import os
+import dj_database_url
 import cloudinary
 import cloudinary.uploader
 import cloudinary.api
-from decouple import Config, RepositoryEnv
+from decouple import config
 
-ENV_PATH = os.path.join(os.path.dirname(__file__), '../.env')
+""" from decouple import Config, RepositoryEnv """
+
+# DEV
+""" ENV_PATH = os.path.join(os.path.dirname(__file__), '../.env')
 repo = RepositoryEnv(ENV_PATH)
-
-config = Config(repo)
+config = Config(repo) """
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -30,13 +33,16 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-6dci&hv@nc7c-hn1yogqz+fn_o3vvi$3u^a0*#9b@(qs*)z#+!'
+""" SECRET_KEY = 'django-insecure-6dci&hv@nc7c-hn1yogqz+fn_o3vvi$3u^a0*#9b@(qs*)z#+!' """
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+""" DEBUG = True """
 
-ALLOWED_HOSTS = []
+SECRET_KEY = config('DJANGO_SECRET_KEY')
+DEBUG      = config('DEBUG', default=False, cast=bool)
 
+
+ALLOWED_HOSTS = ['back.guillemleon.com', 'localhost', '127.0.0.1']
 
 # Application definition
 
@@ -96,14 +102,18 @@ WSGI_APPLICATION = 'config.wsgi.application'
 } """
 
 # PROD DB
-"""
+
 DATABASES = {
-    "default": dj_database_url.config(default=os.getenv("DATABASE_URL"))
+    'default': dj_database_url.config(
+        default=os.getenv('DATABASE_URL'),
+        conn_max_age=600,
+        ssl_require=True
+    )
 }
-"""
+
 
 # DEV DB
-DATABASES = {
+""" DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': config('DB_NAME'),
@@ -112,7 +122,7 @@ DATABASES = {
         'HOST': config('DB_HOST'),
         'PORT': config('DB_PORT'),
     }
-}
+} """
 
 
 
@@ -149,8 +159,9 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
-
-STATIC_URL = 'static/'
+MIDDLEWARE.insert(1, 'whitenoise.middleware.WhiteNoiseMiddleware')
+STATIC_ROOT = BASE_DIR / 'staticfiles'
+STATIC_URL = '/static/'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
