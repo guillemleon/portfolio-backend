@@ -36,9 +36,6 @@ SECRET_KEY = 'django-insecure-6dci&hv@nc7c-hn1yogqz+fn_o3vvi$3u^a0*#9b@(qs*)z#+!
 DEBUG = True
 
 ALLOWED_HOSTS = []
-print(config('DB_NAME'))
-print(config('DB_USER'))
-print(config('DB_PASSWORD'))
 
 
 # Application definition
@@ -90,6 +87,7 @@ WSGI_APPLICATION = 'config.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
+# DEFAULT DB
 """ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
@@ -97,6 +95,14 @@ WSGI_APPLICATION = 'config.wsgi.application'
     }
 } """
 
+# PROD DB
+"""
+DATABASES = {
+    "default": dj_database_url.config(default=os.getenv("DATABASE_URL"))
+}
+"""
+
+# DEV DB
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
