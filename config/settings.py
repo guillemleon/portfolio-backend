@@ -42,7 +42,7 @@ SECRET_KEY = config('DJANGO_SECRET_KEY')
 DEBUG      = config('DEBUG', default=False, cast=bool)
 
 
-ALLOWED_HOSTS = ['back.guillemleon.com', 'localhost', '127.0.0.1']
+ALLOWED_HOSTS = ['portfolio-backend-r15n.onrender.com', 'back.guillemleon.com', 'localhost', '127.0.0.1']
 
 # Application definition
 
